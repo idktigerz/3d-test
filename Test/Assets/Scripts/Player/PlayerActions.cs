@@ -14,6 +14,7 @@ public class PlayerActions : MonoBehaviour
     public Text hintText;
     bool active = false;
     int coinCounter = 0;
+    private bool canInteract;
 
     string[] tags = { "Ground", "Wall" };
     private Material coinColor;
@@ -33,22 +34,24 @@ public class PlayerActions : MonoBehaviour
         if (active && (!hit.collider.CompareTag("Ground") && (!hit.collider.CompareTag("Wall")) && (!hit.collider.CompareTag("throwableObject"))))
         {
             hintText.enabled = true;
-            if (hit.collider.CompareTag("Coin")){
-                coinColor.color = Color.yellow;
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    Debug.Log("Catch");
-                    coin.SetActive(false);
-                    StartCoroutine(Timer());
-                    coinCounter++;
-                    coinText.text = "Coins: " + coinCounter;
-                }
+            if (Input.GetKeyDown(KeyCode.E) && hit.collider.CompareTag("Coin")){
+                Debug.Log("Catch");
+                coin.SetActive(false);
+                StartCoroutine(Timer());
+                coinCounter++;
+                coinText.text = "Coins: " + coinCounter;
             }
         }
         else
         {
             coinColor.color = Color.white;
             hintText.enabled = false;
+            Debug.Log("Is active? " + active);
+        }
+        if (canInteract && Input.GetKeyDown(KeyCode.E))
+        {
+            coinCounter++;
+            coinText.text = "Coins: " + coinCounter;
         }
     }
 
@@ -58,17 +61,19 @@ public class PlayerActions : MonoBehaviour
         coin.SetActive(true);
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Shop"))
         {
-            hintText.enabled = true;
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                coinCounter++;
-                Debug.Log(coinCounter);
-                coinText.text = "Coins: " + coinCounter;
-            }
+            canInteract = true;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Shop"))
+        {
+            canInteract = false;
+
         }
     }
 }
