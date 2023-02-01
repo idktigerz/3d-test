@@ -34,12 +34,16 @@ public class PlayerActions : MonoBehaviour
         if (active && (!hit.collider.CompareTag("Ground") && (!hit.collider.CompareTag("Wall")) && (!hit.collider.CompareTag("throwableObject"))))
         {
             hintText.enabled = true;
-            if (Input.GetKeyDown(KeyCode.E) && hit.collider.CompareTag("Coin")){
-                Debug.Log("Catch");
-                coin.SetActive(false);
-                StartCoroutine(Timer());
-                coinCounter++;
-                coinText.text = "Coins: " + coinCounter;
+            if (hit.collider.CompareTag("Coin")){
+                coinColor.color = Color.yellow;
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    Debug.Log("Catch");
+                    coin.SetActive(false);
+                    StartCoroutine(Timer());
+                    coinCounter++;
+                    coinText.text = "Coins: " + coinCounter;
+                }
             }
         }
         else
