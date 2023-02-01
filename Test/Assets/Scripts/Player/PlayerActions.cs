@@ -31,17 +31,13 @@ public class PlayerActions : MonoBehaviour
         {
             hintText.enabled = true;
             Debug.Log("Is active? " + active);
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                if (hit.collider.CompareTag("Coin"))
-                {
-                    Debug.Log("Catch");
-                    coin.SetActive(false);
-                    StartCoroutine(Timer());
-                    coinCounter++;
-                    coinText.text = "Coins: " + coinCounter;
-                }
-            } 
+            if (hit.collider.CompareTag("Coin")){
+                Debug.Log("Catch");
+                coin.SetActive(false);
+                StartCoroutine(Timer());
+                coinCounter++;
+                coinText.text = "Coins: " + coinCounter;
+            }
         }
         else
         {
@@ -49,10 +45,19 @@ public class PlayerActions : MonoBehaviour
             Debug.Log("Is active? " + active);
         }
     }
-    
+
     private IEnumerator Timer()
     {
         yield return new WaitForSeconds(3);
         coin.SetActive(true);
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Shop") && Input.GetKeyDown(KeyCode.E))
+        {
+            coinCounter++;
+            coinText.text = "Coins: " + coinCounter;
+        }
     }
 }
