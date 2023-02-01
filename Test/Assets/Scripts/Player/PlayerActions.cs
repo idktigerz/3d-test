@@ -31,8 +31,7 @@ public class PlayerActions : MonoBehaviour
         if (active && (!hit.collider.CompareTag("Ground") && (!hit.collider.CompareTag("Wall"))))
         {
             hintText.enabled = true;
-            Debug.Log("Is active? " + active);
-            if (Input.GetKeyDown(KeyCode.E)){
+            if (Input.GetKeyDown(KeyCode.E) && hit.collider.CompareTag("Coin")){
                 Debug.Log("Catch");
                 coin.SetActive(false);
                 StartCoroutine(Timer());
@@ -43,7 +42,6 @@ public class PlayerActions : MonoBehaviour
         else
         {
             hintText.enabled = false;
-            Debug.Log("Is active? " + active);
         }
     }
 
@@ -55,10 +53,15 @@ public class PlayerActions : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Shop") && Input.GetKeyDown(KeyCode.E))
+        if (other.CompareTag("Shop"))
         {
-            coinCounter++;
-            coinText.text = "Coins: " + coinCounter;
+            hintText.enabled = true;
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                coinCounter++;
+                Debug.Log(coinCounter);
+                coinText.text = "Coins: " + coinCounter;
+            }
         }
     }
 }
