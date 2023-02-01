@@ -23,14 +23,6 @@ public class PlayerActions : MonoBehaviour
     {
         RaycastHit hit;
         active = Physics.Raycast(cam.position, cam.TransformDirection(Vector3.forward), out hit, playerActivateDistance);
-        if (active && !hit.collider.CompareTag("Ground"))
-        {
-            hintText.enabled = true;
-        }
-        else
-        {
-            hintText.enabled = false;
-        }
         if(Input.GetKeyDown(KeyCode.E) && active)
         {
             Debug.Log("Is active? " + active);

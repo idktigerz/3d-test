@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 
 public class Throwing : MonoBehaviour
 {
@@ -9,6 +9,7 @@ public class Throwing : MonoBehaviour
     public Transform cam;
     public Transform attackPoint;
     public GameObject objectToThrow;
+    public Text ammoText;
 
     [Header("Settings")]
     public int totalThrows;
@@ -31,6 +32,7 @@ public class Throwing : MonoBehaviour
         if (Input.GetKeyDown(throwKey) && readyToThrow && totalThrows > 0)
         {
             Throw();
+            ammoText.text = totalThrows + "/500 Ammo";
         }
     }
 
