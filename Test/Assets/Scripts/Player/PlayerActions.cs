@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using Unity.VisualScripting;
 
 public class PlayerActions : MonoBehaviour
 {
@@ -31,7 +32,7 @@ public class PlayerActions : MonoBehaviour
         {
             hintText.enabled = true;
             Debug.Log("Is active? " + active);
-            if (hit.collider.CompareTag("Coin")){
+            if (Input.GetKeyDown(KeyCode.E)){
                 Debug.Log("Catch");
                 coin.SetActive(false);
                 StartCoroutine(Timer());
