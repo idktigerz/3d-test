@@ -50,7 +50,6 @@ public class PlayerActions : MonoBehaviour
         {
             coinColor.color = Color.white;
             hintText.enabled = false;
-            Debug.Log("Is active? " + active);
         }
         if (canInteract && Input.GetKeyDown(KeyCode.E))
         {
