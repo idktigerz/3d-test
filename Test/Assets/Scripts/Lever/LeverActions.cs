@@ -27,16 +27,18 @@ public class LeverActions : MonoBehaviour
         {
             if (leverState)
             {
-                leverColor.color = Color.green;
-                wallControler.MoveGate(leverState);
+                leverColor.color = Color.red;
                 leverState = false;
+                wallControler.MoveGate(leverState);
+                
                 
             }
             else
             {
-                leverColor.color = Color.red;
-                wallControler.MoveGate(leverState);
+                leverColor.color = Color.green;
                 leverState = true;
+                wallControler.MoveGate(leverState);
+                
             }
         }
 
