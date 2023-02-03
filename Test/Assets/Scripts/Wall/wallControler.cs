@@ -19,7 +19,6 @@ public class wallControler : MonoBehaviour
     {
         if (gateState)
         {
-            Debug.Log("aaaaaaa");
             var current = Vector3.MoveTowards(transform.position, nextPos, 10 * Time.deltaTime);
             transform.position = current;
 
@@ -35,7 +34,7 @@ public class wallControler : MonoBehaviour
         if (state)
         {
             gateState = true;
-            
+
         }
         else
         {
