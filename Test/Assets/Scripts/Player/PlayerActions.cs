@@ -16,7 +16,6 @@ public class PlayerActions : MonoBehaviour
     int coinCounter = 0;
     private bool canInteract;
 
-    string[] tags = { "Ground", "Wall" };
     private Material coinColor;
 
     // Start is called before the first frame update
