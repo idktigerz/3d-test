@@ -37,7 +37,6 @@ public class PlayerActions : MonoBehaviour
                 coinColor.color = Color.yellow;
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    Debug.Log("Catch");
                     coin.SetActive(false);
                     StartCoroutine(Timer());
                     coinCounter++;
